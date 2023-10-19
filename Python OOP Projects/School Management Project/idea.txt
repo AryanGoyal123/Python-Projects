@@ -1,0 +1,34 @@
+Title: School Management Project
+
+Description: This program will contain all the information and functions needed to maintain the ECE departement at NC State
+
+Objects:
+
+Person Class:
+Variables: name, age
+
+Student Class:
+Variables: student_id, name, age, courses_enrolled, etc.
+Functions: enroll_course(course), view_transcript(), get_student_details(), etc.
+
+Teacher Class:
+Variables: teacher_id, name, age, courses_taught, etc.
+Functions: assign_grade(student, course, grade), view_courses_taught(), get_teacher_details(), etc.
+
+Course Class:
+Variables: course_code, course_name, credits, students_enrolled, teacher, etc.
+Functions: add_student(student), remove_student(student), get_course_details(), etc.
+
+College Class:
+Variables: students, teachers, courses, etc.
+Functions: admit_student(student), hire_teacher(teacher), offer_course(course), generate_report_card(student), etc.
+
+Registrar Class:
+Functions: register_student(student), register_teacher(teacher), create_course(course), etc.
+
+Database Class:
+You might want a class to handle data storage and retrieval.
+Functions: save_data(), load_data(), etc.
+
+Data: Store data in csv files for students, teachers, and courses for basic informaiton
+      Store some advanced relational data in JSON

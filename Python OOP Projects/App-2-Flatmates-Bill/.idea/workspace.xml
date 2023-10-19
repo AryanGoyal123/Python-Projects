@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aeedaf8b-be50-4d34-bea1-5b3054e20aea" name="Changes" comment="Initial Classes and Methods" />
+    <list default="true" id="aeedaf8b-be50-4d34-bea1-5b3054e20aea" name="Changes" comment="Initial Classes and Methods">
+      <change afterPath="$PROJECT_DIR$/../School Management Project/idea.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,9 +22,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 4
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2VzoE3z5FP0A8TrHyRYETWsMb3W" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -33,7 +35,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "App1",
+    "git-widget-placeholder": "main",
     "last_opened_file_path": "/Users/aryangoyal/Documents/Python_Projects/Python-Projects/Python OOP Projects/App-2-Flatmates-Bill",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -51,6 +53,7 @@
       <option name="presentableId" value="Default" />
       <updated>1695848154589</updated>
       <workItem from="1695848155676" duration="3628000" />
+      <workItem from="1697732898492" duration="522000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Classes and Methods">
       <option name="closed" value="true" />
