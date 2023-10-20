@@ -28,14 +28,34 @@ class DataManager:
             with open(cls.student_csv_file_path, mode='w', newline='') as file:
                 # Define CSV writer
                 writer = csv.writer(file)
-    
+
                 # Write data to the CSV file
                 writer.writerows(data)
 
     @classmethod
     def create_teacher_csv(cls):
-        pass
+        if not DataManager.csv_file_exists(cls.teacher_csv_file_path):
+            data = [
+                ['Name', 'Age', 'TeacherID']
+            ]
+
+            with open(cls.teacher_csv_file_path, mode='w', newline='') as file:
+                # Define CSV writer
+                writer = csv.writer(file)
+
+                # Write data to the CSV file
+                writer.writerows(data)
 
     @classmethod
     def create_course_csv(cls):
-        pass
+        if not DataManager.csv_file_exists(cls.courses_csv_file_path):
+            data = [
+                ['Name', 'Section']
+            ]
+
+            with open(cls.courses_csv_file_path, mode='w', newline='') as file:
+                # Define CSV writer
+                writer = csv.writer(file)
+
+                # Write data to the CSV file
+                writer.writerows(data)
