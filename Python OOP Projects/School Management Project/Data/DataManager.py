@@ -28,9 +28,11 @@ class DataManager:
             with open(cls.student_csv_file_path, mode='w', newline='') as file:
                 # Define CSV writer
                 writer = csv.writer(file)
-
-                # Write data to the CSV file
                 writer.writerows(data)
+
+            return True
+
+        return False
 
     @classmethod
     def create_teacher_csv(cls):
@@ -42,20 +44,30 @@ class DataManager:
             with open(cls.teacher_csv_file_path, mode='w', newline='') as file:
                 # Define CSV writer
                 writer = csv.writer(file)
-
-                # Write data to the CSV file
                 writer.writerows(data)
 
     @classmethod
     def create_course_csv(cls):
         if not DataManager.csv_file_exists(cls.courses_csv_file_path):
             data = [
-                ['Name', 'Section']
+                ['Course Name', 'Course Code', 'Credits']
             ]
 
             with open(cls.courses_csv_file_path, mode='w', newline='') as file:
                 # Define CSV writer
                 writer = csv.writer(file)
-
-                # Write data to the CSV file
                 writer.writerows(data)
+
+    @classmethod
+    def add_student_csv(cls, student):
+
+        # create a new list for the student
+        data = [
+            [f'{student.name}', f'{student.age}', f'{student.studentID}']
+        ]
+        if DataManager.csv_file_exists(cls.student_csv_file_path):
+            with open(cls.student_csv_file_path, mode='w', newline='') as file:
+                writer = csv.writer(file)
+                writer.writerows(data)
+        else:
+            print("Error! CSV file not found!")

@@ -1,4 +1,7 @@
+import random
+
 from Person import Person
+import json
 
 
 class Student(Person):
@@ -10,6 +13,7 @@ class Student(Person):
             """
             load data from CSV file
             """
+            pass
 
     def enroll_course(self, course):
         pass
@@ -20,4 +24,7 @@ class Student(Person):
     def get_student_details(self):
         super().get_person_details()
         print(f"Student ID: {self.studentID}")
-    
+
+    @classmethod
+    def studentID_generator(cls):
+        return random.randint(1,100)

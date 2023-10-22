@@ -19,12 +19,9 @@ Course Class:
 Variables: course_code, course_name, credits, students_enrolled, teacher, etc.
 Functions: add_student(student), remove_student(student), get_course_details(), etc.
 
-College Class:
-Variables: students, teachers, courses, etc.
-Functions: admit_student(student), hire_teacher(teacher), offer_course(course), generate_report_card(student), etc.
-
 Registrar Class:
 Functions: register_student(student), register_teacher(teacher), create_course(course), etc.
+Functions: admit_student(student), hire_teacher(teacher), offer_course(course), generate_report_card(student), etc.
 
 DataManager Class:
 You might want a class to handle data storage and retrieval.
