@@ -1,4 +1,4 @@
-=Title: School Management Project
+Title: School Management Project
 
 Description: This program will contain all the information and functions needed to maintain the ECE departement at NC State
 
