@@ -1,5 +1,6 @@
+from fpdf import fpdf
 
-class PDFreport:
+class PdfReport:
     def __init(self, filename):
         self.filename = filename
     

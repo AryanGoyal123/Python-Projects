@@ -1,6 +1,6 @@
 from receipt import Receipt
 from flatmate import Flatmate
-from pdfreport import PDFreport
+from pdfreport import PdfReport
 
 
 def main():
