@@ -89,7 +89,7 @@ class Rectangle:
     def perimeter(self):
         return 2*(self._width + self._height)
 
-    def set_width(self, new_width):
+    def set_width(self, new_width: int):
         if not isinstance(new_width, int):
             raise TypeError("Input Integer Values")
         else:
@@ -98,7 +98,7 @@ class Rectangle:
             else:
                 raise ValueError("Only Positive Values Are Allowed")
 
-    def set_height(self, new_height):
+    def set_height(self, new_height: int):
         if not isinstance(new_height, int):
             raise TypeError("Input Integer Values")
         else:
