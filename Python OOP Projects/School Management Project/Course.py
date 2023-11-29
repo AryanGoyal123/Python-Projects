@@ -1,5 +1,15 @@
 class Course:
     def __init__(self, _code: int, _name: str, _credit: int):
+        """
+        Initializes a new instance of the Student class.
+        :param _code: int - The code of the course.
+        :param _name: str- The name of the course.
+        :param _credit: int - The credit of the course.
+        :raises ValueError: If the code is not an integer or is negative.
+        :raises ValueError: If the credits is not an integer or is negative.
+        :raises TypeError: If the name is not a string.
+        """
+
         self._course_code = _code
         self._credits = _credit
         self._course_name = _name
