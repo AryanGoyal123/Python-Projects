@@ -8,8 +8,12 @@ from Data.DataManager import DataManager
 
 class School:
     """
-    This class will serve as a way to interact with all the other class and perform commands. Think of as an admin class for the entire school management system.
+    This class will serve as a way to interact with all the other class and perform commands.
+    Think of as an admin class for the entire school management system.
     """
+
+    def create_csv(self):
+
     @staticmethod
     def register_student():
         """

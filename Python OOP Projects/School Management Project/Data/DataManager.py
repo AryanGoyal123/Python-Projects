@@ -71,7 +71,7 @@ class DataManager:
                 writer = csv.writer(file)
                 writer.writerow(data)
         else:
-            raise FileExistsError("Student File Not Found")
+            raise FileNotFoundError("Student File Not Found")
 
     @classmethod
     def add_teacher_csv(cls, teacher):
@@ -85,4 +85,4 @@ class DataManager:
                 writer = csv.writer(file)
                 writer.writerow(data)
         else:
-            raise FileExistsError("Teacher File Not Found")
+            raise FileNotFoundError("Teacher File Not Found")
