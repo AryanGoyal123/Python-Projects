@@ -57,7 +57,6 @@ class Person:
         self._age = new_age
 
 
-
 class Rectangle:
     def __init__(self, _width: int, _height: int) -> None:
         self._width = _width
