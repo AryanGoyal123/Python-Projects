@@ -1,6 +1,4 @@
-import csv
 import os
-import json
 from Student import Student
 from Teacher import Teacher
 from Data.DataManager import DataManager
@@ -30,6 +28,16 @@ class School:
         # create an instance from Student class
         student = Student(student_name, student_age, student_id)
         DataManager.add_student_csv(student)
+
+    @staticmethod
+    def register_teacher():
+        teacher_name = input("Please input new teacher's name: ").strip()
+        teacher_age = int(input("Please input new teacher's age: ").strip())
+        teacher_id = Teacher.generate_teacher_id()
+
+        # create an instance from Teacher class
+        teacher = Teacher(teacher_name, teacher_age, teacher_id)
+        DataManager.add_student_csv(teacher)
 
 
 school = School
