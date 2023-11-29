@@ -43,86 +43,69 @@ myclass = MyClass(1, 2, 3)
 
 # Practice Question 1
 class Person:
-    def __init__(self, age=0):
-        if age >= 0:
-            self.__age = age
-        else:
+    def __init__(self, age: int) -> None:
+        self._age = age
+
+    @property
+    def age(self) -> int:
+        return self._age
+
+    @age.setter
+    def age(self, new_age):
+        if new_age < 0 or not isinstance(new_age, int):
             raise ValueError("Value Error")
-
-    def set_age(self, new_age):
-        if new_age >= 0:
-            self.__age = new_age
-        else:
-            raise ValueError("Value Error")
-
-    def get_age(self):
-        return self.__age
+        self._age = new_age
 
 
-# try:
-#     person = Person(25)  # Initialize with a valid age
-#     person.set_age(30)  # Set a new valid age
-#     print(person.get_age())  # Access and print the age
-#
-#     person.set_age(-5)  # Attempt to set a negative age - should raise an error
-# except ValueError as e:
-#     print(e)
 
 class Rectangle:
-    def __init__(self, _width: int, _height: int):
+    def __init__(self, _width: int, _height: int) -> None:
+        self._width = _width
+        self._height = _height
 
-        if not isinstance(_width, int) or not isinstance(_height, int):
-            raise TypeError("Input Integer Values")
-
-        if _width >= 0 and _height >= 0:
-            self._width = _width
-            self._height = _height
-        else:
-            raise ValueError("Only Positive Values Are Allowed")
-
-    def __str__(self):
+    def __str__(self) -> str:
         return f"Rectangle(width={self._width}, height={self._height}"
 
-    def area(self):
+    def area(self) -> float:
         return self._height * self._width
 
-    def perimeter(self):
-        return 2*(self._width + self._height)
+    def perimeter(self) -> float:
+        return 2 * (self._width + self._height)
 
-    def set_width(self, new_width: int):
-        if not isinstance(new_width, int):
-            raise TypeError("Input Integer Values")
-        else:
-            if new_width >= 0:
-                self._width = new_width
-            else:
-                raise ValueError("Only Positive Values Are Allowed")
-
-    def set_height(self, new_height: int):
-        if not isinstance(new_height, int):
-            raise TypeError("Input Integer Values")
-        else:
-            if new_height >= 0:
-                self._height = new_height
-            else:
-                raise ValueError("Only Positive Values Are Allowed")
-
-    def get_width(self):
+    @property
+    def width(self):
         return self._width
 
-    def get_height(self):
+    @property
+    def height(self):
         return self._height
+
+    @width.setter
+    def width(self, new_width: int):
+        if not isinstance(new_width, int):
+            raise TypeError("Input Integer Values")
+        if new_width <= 0:
+            raise ValueError("Only Positive Values Are Allowed")
+        self._width = new_width
+
+    @height.setter
+    def height(self, new_height: int):
+        if not isinstance(new_height, int):
+            raise TypeError("Input Integer Values")
+        if new_height <= 0:
+            raise ValueError("Only Positive Values Are Allowed")
+        self._height = new_height
 
 
 class Square(Rectangle):
-    def __init__(self, side):
+    def __init__(self, side) -> None:
         super().__init__(side, side)
 
-    def area(self):
+    def area(self) -> float:
         return self._width * self._width
 
-    def perimeter(self):
+    def perimeter(self) -> float:
         return 4 * self._width
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"Square(side={self._width}"
