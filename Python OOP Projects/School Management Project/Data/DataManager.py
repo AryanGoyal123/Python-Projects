@@ -91,3 +91,62 @@ class DataManager:
                 writer.writerow(data)
         else:
             raise FileNotFoundError("Course File Not Found")
+
+    # method to search for a specific student, teacher, or course based on the name
+    @classmethod
+    def name_search(cls, name: str, search_field: str):
+        if search_field == 'teacher':
+            file = cls.teacher_csv_file_path
+        elif search_field == 'student':
+            file = cls.student_csv_file_path
+        else:
+            raise ValueError("Wrong search field!")
+
+        """
+        Open the given file in read mode and search through the 'Name' Column
+        based on the 'name' argument
+        """
+        with open(file, mode='r', newline='') as file:
+            reader = csv.reader(file)
+            headers = next(reader)
+
+            for row in reader:
+                if name == row[0]:
+                    return row[0], row[1], row[2]
+                return 0
+
+    # method to search for a specific student, teacher or course based on the code
+    @classmethod
+    def id_search(cls, id: int, search_field: str):
+        if search_field == 'teacher':
+            file = cls.teacher_csv_file_path
+        elif search_field == 'student':
+            file = cls.student_csv_file_path
+        else:
+            raise ValueError("Wrong search field!")
+
+        """
+        Open the given file in read mode and search through the 'ID' Column
+        based on the 'id' argument
+        """
+        with open(file, mode='r', newline='') as file:
+            reader = csv.reader(file)
+            headers = next(reader)
+
+            for row in reader:
+                if id == row[2]:
+                    return row[0], row[1], row[2]
+                return 0
+
+    @classmethod
+    def course_search(cls, code: int):
+        file = cls.courses_csv_file_path
+
+        with open(file, mode='r', newline='') as file:
+            reader = csv.reader(file)
+            headers = next(reader)
+
+            for row in reader:
+                if code == row[1]:
+                    return row[0], row[1], row[2]
+                return 0

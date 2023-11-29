@@ -46,7 +46,8 @@ class School:
         course = Course(course_code, course_name, course_credits)
         DataManager.add_course_csv(course)
 
-school = School
-school.create_csv()
-school.register_student()
 
+school = School
+# school.create_csv()
+# school.register_student()
+DataManager.name_search('Aryan', 'student')
