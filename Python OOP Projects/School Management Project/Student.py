@@ -3,7 +3,7 @@ from Person import Person
 
 
 class Student(Person):
-    def __init__(self, _name: str, _age: int, _student_id, courses_enrolled=None):
+    def __init__(self, _name: str, _age: int, _student_id: int, courses_enrolled=None):
         """
         Initializes a new instance of the Student class.
         :param _name: str - The name of the student.
@@ -29,6 +29,16 @@ class Student(Person):
 
     def __str__(self):
         return f"Student(name:{self._name}, age:{self._age}, studentID:{self._studentID})"
+
+    @staticmethod
+    def generate_student_id():
+        characters = '0123456789'
+        length = 9
+
+        # Randomly choose characters from the characters list and join them into a string
+        random_id = ''.join(random.choice(characters) for i in range(length))
+
+        return int(random_id)
 
     def enroll_course(self, course):
         pass
