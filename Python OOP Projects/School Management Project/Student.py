@@ -27,7 +27,7 @@ class Student(Person):
             """
             pass
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"Student(name:{self._name}, age:{self._age}, studentID:{self._studentID})"
 
     @staticmethod

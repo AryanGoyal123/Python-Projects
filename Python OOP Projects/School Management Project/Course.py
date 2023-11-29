@@ -48,8 +48,10 @@ class Course:
     @credits.setter
     def credits(self, new_credits: int):
         """Sets the course's credits with value validation."""
-        if not isinstance(new_credits, int) or new_credits <= 0:
+        if not isinstance(new_credits, int) or new_credits < 0:
             raise ValueError("Course code should be a positive integer")
+        if not 0 <= new_credits <= 4:
+            raise ValueError("Course credit value can only be between 0 and 4")
         self._credits = new_credits
 
     @name.setter

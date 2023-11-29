@@ -1,6 +1,3 @@
-from Data import DataManager
-
-
 class Person:
     def __init__(self, _name: str, _age: int):
         """
@@ -13,7 +10,7 @@ class Person:
         self._name = _name  # this will call the setter method
         self._age = _age
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"Person(name:{self._name}, age:{self._age})"
 
     @property
