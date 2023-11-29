@@ -11,7 +11,7 @@ class School:
     """
 
     @staticmethod
-    def create_csv():
+    def create_csv() -> None:
         DataManager.create_student_csv()
         DataManager.create_teacher_csv()
         DataManager.create_course_csv()

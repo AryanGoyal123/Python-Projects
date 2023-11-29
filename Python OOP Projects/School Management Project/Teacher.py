@@ -26,11 +26,11 @@ class Teacher(Person):
             load data from CSV file
             """
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"Teacher(name:{self._name}, age:{self._age}, teacherID:{self._teacherID})"
 
     @staticmethod
-    def generate_teacher_id():
+    def generate_teacher_id() -> int:
         characters = '0123456789'
         length = 9
 

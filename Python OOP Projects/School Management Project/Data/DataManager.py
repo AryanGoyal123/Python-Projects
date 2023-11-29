@@ -15,11 +15,11 @@ class DataManager:
     courses_csv_file_path = 'Data/courses.csv'
 
     @staticmethod
-    def csv_file_exists(file_path):
+    def csv_file_exists(file_path) -> bool:
         return os.path.isfile(file_path)
 
     @classmethod
-    def create_student_csv(cls):
+    def create_student_csv(cls) -> None:
 
         if not DataManager.csv_file_exists(cls.student_csv_file_path):
             data = [
@@ -32,7 +32,7 @@ class DataManager:
                 writer.writerows(data)
 
     @classmethod
-    def create_teacher_csv(cls):
+    def create_teacher_csv(cls) -> None:
         if not DataManager.csv_file_exists(cls.teacher_csv_file_path):
             data = [
                 ['Name', 'Age', 'TeacherID']
@@ -44,7 +44,7 @@ class DataManager:
                 writer.writerows(data)
 
     @classmethod
-    def create_course_csv(cls):
+    def create_course_csv(cls) -> None:
         if not DataManager.csv_file_exists(cls.courses_csv_file_path):
             data = [
                 ['Course Name', 'Course Code', 'Credits']
@@ -56,7 +56,7 @@ class DataManager:
                 writer.writerows(data)
 
     @classmethod
-    def add_student_csv(cls, student):
+    def add_student_csv(cls, student) -> None:
 
         # create a new list for the student
         data = [f'{student.name}', f'{student.age}', f'{student.studentID}']
@@ -69,7 +69,7 @@ class DataManager:
             raise FileNotFoundError("Student File Not Found")
 
     @classmethod
-    def add_teacher_csv(cls, teacher):
+    def add_teacher_csv(cls, teacher) -> None:
         # create a new list for the teacher
         data = [f'{teacher.name}', f'{teacher.age}', f'{teacher.teacherID}']
 
@@ -81,7 +81,7 @@ class DataManager:
             raise FileNotFoundError("Teacher File Not Found")
 
     @classmethod
-    def add_course_csv(cls, course):
+    def add_course_csv(cls, course) -> None:
         # create a new list for the course
         data = [f'{course.name}', f'{course.code}', f'{course.credits}']
 

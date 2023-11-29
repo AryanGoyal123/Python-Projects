@@ -14,6 +14,9 @@ class Course:
         self._credits = _credit
         self._course_name = _name
 
+    def __str__(self) -> str:
+        return f'Course(name:{self._course_name}, code:{self._course_code}, credits:{self._credits})'
+
     def add_student(self, student):
         pass
 

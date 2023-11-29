@@ -31,7 +31,7 @@ class Student(Person):
         return f"Student(name:{self._name}, age:{self._age}, studentID:{self._studentID})"
 
     @staticmethod
-    def generate_student_id():
+    def generate_student_id() -> int:
         characters = '0123456789'
         length = 9
 
