@@ -1,14 +1,15 @@
-"""
-This class will manage read and write to the JSON and CSV Files
-We need a CSV file to store the name of student, teachers, and course list
-JSON file to store the courses students are enrolled in, and their respective grades
-JSOn file to store the courses the teacher is teaching
-"""
 import csv
 import os
 
 
 class DataManager:
+    """
+    This class will manage read and write to the JSON and CSV Files
+    We need a CSV file to store the name of student, teachers, and course list
+    JSON file to store the courses students are enrolled in, and their respective grades
+    JSOn file to store the courses the teacher is teaching
+    """
+
     student_csv_file_path = 'student.csv'
     teacher_csv_file_path = 'teacher.csv'
     courses_csv_file_path = 'courses.csv'
