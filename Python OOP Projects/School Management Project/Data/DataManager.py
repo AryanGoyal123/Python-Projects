@@ -10,9 +10,9 @@ class DataManager:
     JSOn file to store the courses the teacher is teaching
     """
 
-    student_csv_file_path = 'student.csv'
-    teacher_csv_file_path = 'teacher.csv'
-    courses_csv_file_path = 'courses.csv'
+    student_csv_file_path = 'Data/student.csv'
+    teacher_csv_file_path = 'Data/teacher.csv'
+    courses_csv_file_path = 'Data/courses.csv'
 
     @staticmethod
     def csv_file_exists(file_path):
@@ -67,8 +67,22 @@ class DataManager:
             [f'{student.name}', f'{student.age}', f'{student.studentID}']
         ]
         if DataManager.csv_file_exists(cls.student_csv_file_path):
-            with open(cls.student_csv_file_path, mode='w', newline='') as file:
+            with open(cls.student_csv_file_path, mode='a', newline='') as file:
                 writer = csv.writer(file)
-                writer.writerows(data)
+                writer.writerow(data)
         else:
-            print("Error! CSV file not found!")
+            raise FileExistsError("Student File Not Found")
+
+    @classmethod
+    def add_teacher_csv(cls, teacher):
+        # create a new list for the teacher
+        data = [
+            [f'{teacher.name}', f'{teacher.age}', f'{teacher.teacherID}']
+        ]
+
+        if DataManager.csv_file_exists(cls.teacher_csv_file_path):
+            with open(cls.teacher_csv_file_path, mode='a', newline='') as file:
+                writer = csv.writer(file)
+                writer.writerow(data)
+        else:
+            raise FileExistsError("Teacher File Not Found")

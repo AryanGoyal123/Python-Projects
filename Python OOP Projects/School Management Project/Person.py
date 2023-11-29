@@ -25,8 +25,8 @@ class Person:
         """Sets the person's age with value validation."""
         if not isinstance(new_age, int):
             raise TypeError("Age must be an integer")
-        if new_age < 0:
-            raise ValueError("Age cannot be negative")
+        if not (5 <= new_age <= 99):
+            raise ValueError("Age cannot be less than 5 or more than 99")
         self._age = new_age
 
     @property

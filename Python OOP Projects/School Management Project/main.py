@@ -1,4 +1,4 @@
-from Registrar import Registrar
+from School import Registrar
 from Data.DataManager import DataManager
 
 

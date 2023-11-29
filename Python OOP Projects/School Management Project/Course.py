@@ -37,18 +37,21 @@ class Course:
 
     @code.setter
     def code(self, new_course_code: int):
+        """Sets the course's code with value validation."""
         if not isinstance(new_course_code, int) or new_course_code <= 0:
             raise ValueError("Course code should be a positive integer")
         self._course_code = new_course_code
 
     @credits.setter
     def credits(self, new_credits: int):
+        """Sets the course's credits with value validation."""
         if not isinstance(new_credits, int) or new_credits <= 0:
             raise ValueError("Course code should be a positive integer")
         self._credits = new_credits
 
     @name.setter
     def name(self, new_course_name: str):
+        """Sets the course's name with type validation."""
         if not isinstance(new_course_name, str):
             raise TypeError("Course name should be a string")
         self._course_name = new_course_name
