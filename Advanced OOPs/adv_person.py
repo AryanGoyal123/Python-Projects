@@ -27,6 +27,76 @@ class Stats:
             return "Overweight"
         return "Obese"
 
+    @property
+    def age(self) -> int:
+        return self._age
+
+    @property
+    def gender(self) -> str:
+        return self._gender
+
+    @property
+    def height(self) -> float:
+        return self._height
+
+    @property
+    def weight(self) -> float:
+        return self._weight
+
+    @property
+    def blood_type(self) -> str:
+        return self._blood_type
+
+    @property
+    def eye_color(self) -> str:
+        return self._eye_color
+
+    @property
+    def hair_color(self) -> str:
+        return self._hair_color
+
+    @age.setter
+    def age(self, new_age):
+        if not isinstance(new_age, int) or 5 <= new_age <= 99:
+            raise ValueError
+        self._age = new_age
+
+    @gender.setter
+    def gender(self, new_gender):
+        if not isinstance(new_gender, str):
+            raise TypeError
+        self._gender = new_gender
+
+    @height.setter
+    def height(self, new_height):
+        if not isinstance(new_height, float) or 1 <= new_height <= 3:
+            raise TypeError
+        self._height = new_height
+
+    @weight.setter
+    def weight(self, new_weight):
+        if not isinstance(new_weight, float):
+            return TypeError
+        self._weight = new_weight
+
+    @blood_type.setter
+    def blood_type(self, new_blood_type):
+        if not isinstance(new_blood_type, str):
+            raise TypeError
+        self._blood_type = new_blood_type
+
+    @eye_color.setter
+    def eye_color(self, new_eye_color):
+        if not isinstance(new_eye_color, str):
+            raise TypeError
+        self._eye_color = new_eye_color
+
+    @hair_color.setter
+    def hair_color(self, new_hair_color):
+        if not isinstance(new_hair_color, str):
+            raise TypeError
+        self._hair_color = new_hair_color
+
 
 @dataclass
 class Address:
