@@ -20,3 +20,12 @@ odd_numbers = list(filter(lambda x: (x % 2 != 0), range(10)))
 print(multiply(5, 4))
 print(add(10, 20))
 print(subtract(50, 10))
+
+
+def factorial(num: int):
+    if num <= 1:
+        return num
+    return num * factorial(num - 1)
+
+
+print(factorial(5))

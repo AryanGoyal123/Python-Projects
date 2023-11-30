@@ -1,5 +1,19 @@
 import csv
 import os
+from time import perf_counter
+from typing import Any
+
+
+def benchmark(func):
+    def wrapper(*args: Any, **kwargs: Any) -> Any:
+        start_time = perf_counter()
+        result = func(*args, **kwargs)
+        end_time = perf_counter()
+        delta_t = end_time - start_time
+
+        print(f"Time of Execution: {delta_t}")
+        return result
+    return wrapper
 
 
 class DataManager:
@@ -94,6 +108,7 @@ class DataManager:
 
     # method to search for a specific student, teacher, or course based on the name
     @classmethod
+    @benchmark
     def name_search(cls, name: str, search_field: str):
         if search_field == 'teacher':
             file = cls.teacher_csv_file_path
@@ -115,7 +130,7 @@ class DataManager:
                     return row[0], row[1], row[2]
                 return 0
 
-    # method to search for a specific student, teacher or course based on the code
+    # method to search for a specific student or teacher based on the code
     @classmethod
     def id_search(cls, id: int, search_field: str):
         if search_field == 'teacher':

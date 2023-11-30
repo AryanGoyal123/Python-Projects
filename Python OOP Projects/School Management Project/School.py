@@ -50,4 +50,5 @@ class School:
 school = School
 # school.create_csv()
 # school.register_student()
-DataManager.name_search('Aryan', 'student')
+name, age, id = DataManager.name_search('Aryan', 'student')
+print(f"Name: {name}, Age: {age}, ID: {id}")

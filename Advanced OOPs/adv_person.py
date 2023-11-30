@@ -3,7 +3,7 @@ from time import perf_counter
 from typing import Any
 
 
-def benchmank(func):
+def benchmark(func):
     def wrapper(*args: Any, **kwargs: Any) -> Any:
         start_time = perf_counter()
         result = func(args, kwargs)
