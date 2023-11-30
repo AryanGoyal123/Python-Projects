@@ -1,4 +1,19 @@
 from dataclasses import dataclass
+from time import perf_counter
+from typing import Any
+
+
+def benchmank(func):
+    def wrapper(*args: Any, **kwargs: Any) -> Any:
+        start_time = perf_counter()
+        result = func(args, kwargs)
+        end_time = perf_counter()
+        delta_t = end_time - start_time
+
+        print(f"Time of Execution: {delta_t}")
+
+        return result
+    return wrapper()
 
 
 @dataclass
