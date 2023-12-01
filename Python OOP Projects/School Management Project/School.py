@@ -2,6 +2,7 @@ from Course import Course
 from Student import Student
 from Teacher import Teacher
 from Data.DataManager import DataManager
+from typing import Any
 
 
 class School:
@@ -45,6 +46,49 @@ class School:
         # create an instance from Course class
         course = Course(course_code, course_name, course_credits)
         DataManager.add_course_csv(course)
+
+    @staticmethod
+    def ask_person_info() -> (str, str):
+        search_field = input("Are you searching for a student or teacher?: ").strip()
+        if not search_field.isalpha():
+            raise ValueError("Can only search for a student or teacher")
+
+        person_name = input("What is the name of this person: ").strip()
+        if not name.isalpha():
+            raise ValueError
+        return search_field, person_name
+
+    @staticmethod
+    def get_person_info_name() -> Any:
+        search_field, person_name = School.ask_person_info()
+
+        name_search_result = DataManager.name_search(person_name, search_field)
+
+        if name_search_result == 0:
+            print("Name not found")
+            return 0
+        return name_search_result
+
+    @staticmethod
+    def ask_person_info_code() -> (str, int):
+        search_field = input("Are you searching for a student or teacher?: ").strip()
+        if not search_field.isalpha():
+            raise ValueError("Can only search for a student or teacher")
+
+        person_id = input("What is the person's ID number: ").strip()
+        if not name.isdigit():
+            raise ValueError
+        return search_field, int(person_id)
+
+    @staticmethod
+    def get_person_info_code() -> Any:
+        search_field, person_id = School.ask_person_info_code()
+        code_search_result = DataManager.id_search(person_id, search_field)
+
+        if code_search_result == 0:
+            print("Name not found")
+            return 0
+        return code_search_result
 
 
 school = School
