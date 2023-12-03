@@ -3,7 +3,33 @@ import re
 
 
 @dataclass
-class Book:
+class Product:
+    _price: float = field(default=0.0, compare=False)
+    _quantity: int = field(default=0, compare=False, repr=False)
+
+    @property
+    def price(self) -> float:
+        return self._price
+
+    @property
+    def quantity(self) -> int:
+        return self._quantity
+
+    @price.setter
+    def price(self, new_price: float):
+        if not isinstance(new_price, float) or new_price < 0.0:
+            raise ValueError
+        self._price = new_price
+
+    @quantity.setter
+    def quantity(self, new_quantity: int):
+        if not isinstance(new_quantity, int) or new_quantity < 0:
+            raise ValueError
+        self._quantity = new_quantity
+
+
+@dataclass
+class Book(Product):
     title: str
     author: str = field(default="Unknown Author")
     _isbn: str = field(default="Unknown", repr=False)
@@ -28,7 +54,7 @@ class Book:
         self.pages = self._pages
 
     def __str__(self) -> str:
-        return f'Book(title={self.title}, author={self.author}, pages={self._pages})'
+        return f'Book(title={self.title}, author={self.author}, pages={self._pages}, price={self.price})'
 
     @property
     def isbn(self) -> str:
