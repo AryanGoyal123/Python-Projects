@@ -29,7 +29,7 @@ class Product:
 
 
 @dataclass
-class Book(Product):
+class Book:
     title: str
     author: str = field(default="Unknown Author")
     _isbn: str = field(default="Unknown", repr=False)
@@ -54,7 +54,7 @@ class Book(Product):
         self.pages = self._pages
 
     def __str__(self) -> str:
-        return f'Book(title={self.title}, author={self.author}, pages={self._pages}, price={self.price})'
+        return f'Book(title={self.title}, author={self.author}, pages={self._pages})'
 
     @property
     def isbn(self) -> str:
