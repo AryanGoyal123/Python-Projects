@@ -3,41 +3,13 @@ import re
 
 
 @dataclass
-class Product:
-    _price: float = field(default=0.0, compare=False)
-    _quantity: int = field(default=0, compare=False, repr=False)
-
-    def __post_init__(self) -> None:
-        # trigger data validation
-        self.price = self._price
-        self.quantity = self._quantity
-
-    @property
-    def price(self) -> float:
-        return self._price
-
-    @property
-    def quantity(self) -> int:
-        return self._quantity
-
-    @price.setter
-    def price(self, new_price: float) -> None:
-        if not isinstance(new_price, float) or new_price < 0.0:
-            raise ValueError(f"Expected float for price, got {type(new_price).__name__}")
-        self._price = new_price
-
-    @quantity.setter
-    def quantity(self, new_quantity: int) -> None:
-        if not isinstance(new_quantity, int) or new_quantity < 0:
-            raise ValueError(f"Expected integer for quantity, got {type(new_quantity).__name__}")
-        self._quantity = new_quantity
-
-
-class Book(Product):
+class Book:
     title: str
     author: str = field(default="Unknown Author")
     _isbn: str = field(default="Unknown", repr=False)
     _pages: int = field(default=0, compare=False)
+    _price: float = field(default=0.0, compare=False)
+    _quantity: int = field(default=0, compare=False, repr=False)
 
     """
         __post_init__ is executed after the __init__ method has completed, 
@@ -56,6 +28,8 @@ class Book(Product):
         # validate the isbn and pages instance variables
         self.isbn = self._isbn
         self.pages = self._pages
+        self.price = self._price
+        self.quantity = self._quantity
 
     def __str__(self) -> str:
         return f'Book(title={self.title}, author={self.author}, pages={self.pages}, price={self.price})'
@@ -80,6 +54,26 @@ class Book(Product):
             raise ValueError(f"Expected integer for pages, got {type(value).__name__}")
         self._pages = value
 
+    @property
+    def price(self) -> float:
+        return self._price
+
+    @property
+    def quantity(self) -> int:
+        return self._quantity
+
+    @price.setter
+    def price(self, new_price: float) -> None:
+        if not isinstance(new_price, float) or new_price < 0.0:
+            raise ValueError(f"Expected float for price, got {type(new_price).__name__}")
+        self._price = new_price
+
+    @quantity.setter
+    def quantity(self, new_quantity: int) -> None:
+        if not isinstance(new_quantity, int) or new_quantity < 0:
+            raise ValueError(f"Expected integer for quantity, got {type(new_quantity).__name__}")
+        self._quantity = new_quantity
+
 
 @dataclass
 class AudioBook(Book):
@@ -103,6 +97,10 @@ class AudioBook(Book):
 class EBook(Book):
     _size: float = field(default=0.0, compare=False, metadata={"units": "MB"})
 
+    def __post_init__(self):
+        # data validation
+        self.size = self._size
+
     @property
     def size(self) -> float:
         return self._size
@@ -114,19 +112,18 @@ class EBook(Book):
         self._size = new_size
 
     def __str__(self) -> str:
-        return f'EBook(title={self.title}, author={self.author}, size={self.size}, price={self.price})'
+        return f'EBook(title={self.title}, author={self.author}, size={self.size} MB, price=${self.price})'
 
 
 def main():
-    pass
-    # book1 = Book(title="Changing World Order", author="Ray Dalio",
-    #              _isbn='1234567890', _pages=340)
-    #
-    # book2 = Book(title="Changing World Order", author="Ray Dalio",
-    #              _isbn='1234567890', _pages=350)
-    # print(book1)
-    # print(book2)
-    # print(book1 == book2)
+    ebook = EBook(
+        title='Changing World Order',
+        _size=14.0,
+        _isbn='1234567890',
+        _price='string'
+    )
+
+    print(ebook)
 
 
 if __name__ == "__main__":
