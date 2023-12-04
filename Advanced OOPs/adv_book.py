@@ -79,6 +79,11 @@ class Book:
 class AudioBook(Book):
     _length: float = field(default=0.0, compare=False, metadata={"units": "seconds"})
 
+    def __post_init__(self) -> None:
+        # data validation
+        super().__post_init__()
+        self.length = self._length
+
     @property
     def length(self) -> float:
         return self._length
@@ -90,15 +95,16 @@ class AudioBook(Book):
         self._length = new_length
 
     def __str__(self) -> str:
-        return f'EBook(title={self.title}, author={self.author}, length={self.length}, price={self.price})'
+        return f'EBook(title={self.title}, author={self.author}, length={self.length} seconds, price=${self.price})'
 
 
 @dataclass
 class EBook(Book):
     _size: float = field(default=0.0, compare=False, metadata={"units": "MB"})
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         # data validation
+        super().__post_init__()
         self.size = self._size
 
     @property
@@ -120,7 +126,7 @@ def main():
         title='Changing World Order',
         _size=14.0,
         _isbn='1234567890',
-        _price='string'
+        _price=9.99
     )
 
     print(ebook)
