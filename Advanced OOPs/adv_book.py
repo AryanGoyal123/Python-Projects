@@ -1,11 +1,14 @@
 from dataclasses import dataclass, field
 import re
+from typing import Optional
 
 
 @dataclass
 class Book:
     title: str
     author: str = field(default="Unknown Author")
+    publication_year: Optional[int] = None
+    genre: Optional[str] = None
     _isbn: str = field(default="Unknown", repr=False)
     _pages: int = field(default=0, compare=False)
     _price: float = field(default=0.0, compare=False)
@@ -19,11 +22,18 @@ class Book:
 
     def __post_init__(self) -> None:
 
-        # validate the title and author type
+        # validate the title, author, publication and genre (if not none) type
         if not isinstance(self.title, str):
             raise ValueError(f"Expected string for title, got {type(self.title).__name__}")
+
         if not isinstance(self.author, str):
             raise ValueError(f"Expected string for author, got {type(self.author).__name__}")
+
+        if self.publication_year is not None and not isinstance(self.publication_year, int):
+            raise ValueError(f"Expected integer for publication year, got {type(self.publication_year).__name__}")
+
+        if self.genre is not None and not isinstance(self.genre, str):
+            raise ValueError(f"Expected string for the genre, got {type(self.genre).__name__}")
 
         # validate the isbn and pages instance variables
         self.isbn = self._isbn
