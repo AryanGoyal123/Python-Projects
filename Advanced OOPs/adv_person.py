@@ -1,6 +1,6 @@
 from dataclasses import dataclass, field
 from time import perf_counter
-from typing import Any
+from typing import Any, Optional
 
 
 def benchmark(func):
@@ -13,6 +13,7 @@ def benchmark(func):
         print(f"Time of Execution: {delta_t}")
 
         return result
+
     return wrapper()
 
 
@@ -22,9 +23,9 @@ class Stats:
     _gender: str
     _height: float
     _weight: float
-    _blood_type: str
-    _eye_color: str
-    _hair_color: str
+    _blood_type: Optional[str] = field(default=None)
+    _eye_color: Optional[str] = field(default=None)
+    _hair_color: Optional[str] = field(default=None)
 
     # use __post_init__ function for validation
     # def __post_init__(self) -> None:
@@ -133,6 +134,13 @@ class Address:
 
     def __str__(self) -> str:
         return f"{self._address_line_1}, {self._address_line_2}, {self._city}, {self._country}, {self._postal_code}"
+
+    def __post_init__(self) -> None:
+        self.address_line_1 = self._address_line_1
+        self.address_line_2 = self._address_line_2
+        self.city = self._city
+        self.postal_code = self._postal_code
+        self.country = self._country
 
     @property
     def address_line_1(self) -> str:
@@ -257,6 +265,7 @@ def main() -> None:
         stats=stats,
     )
 
+    print(address)
 
 
 if __name__ == "__main__":
