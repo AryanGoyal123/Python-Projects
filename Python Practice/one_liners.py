@@ -13,3 +13,7 @@ print(filtered)
 # concatenate into a single string
 concatenated_string = ''.join(['Hello', ' ', 'World'])
 print(concatenated_string)
+
+list = ['100,000', '110,000', '120,000']
+filtered_list = [float(''.join(i.split(','))) for i in list]
+print(filtered_list)
