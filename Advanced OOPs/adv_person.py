@@ -79,45 +79,45 @@ class Stats:
         return self._hair_color
 
     @age.setter
-    def age(self, new_age: int):
+    def age(self, new_age: int) -> None:
         if not isinstance(new_age, int):
-            raise ValueError
+            raise TypeError(f"Expected integer for age, got {type(new_age).__name__}.")
         self._age = new_age
 
     @gender.setter
-    def gender(self, new_gender: str):
+    def gender(self, new_gender: str) -> None:
         if not isinstance(new_gender, str):
-            raise TypeError
+            raise TypeError(f"Expected string for gender, got {type(new_gender).__name__}.")
         self._gender = new_gender
 
     @height.setter
-    def height(self, new_height: float):
+    def height(self, new_height: float) -> None:
         if not isinstance(new_height, float):
-            raise TypeError
+            raise TypeError(f"Expected float for height, got {type(new_height).__name__}.")
         self._height = new_height
 
     @weight.setter
-    def weight(self, new_weight: float):
+    def weight(self, new_weight: float) -> None:
         if not isinstance(new_weight, float):
-            raise TypeError
+            raise TypeError(f"Expected float for weight, got {type(new_weight).__name__}.")
         self._weight = new_weight
 
     @blood_type.setter
-    def blood_type(self, new_blood_type: str):
+    def blood_type(self, new_blood_type: str) -> None:
         if not isinstance(new_blood_type, str):
-            raise TypeError
+            raise TypeError(f"Expected string for blood type, got {type(new_blood_type).__name__}.")
         self._blood_type = new_blood_type
 
     @eye_color.setter
-    def eye_color(self, new_eye_color: str):
+    def eye_color(self, new_eye_color: str) -> None:
         if not isinstance(new_eye_color, str):
-            raise TypeError
+            raise TypeError(f"Expected string for eye color, got {type(new_eye_color).__name__}.")
         self._eye_color = new_eye_color
 
     @hair_color.setter
-    def hair_color(self, new_hair_color: str):
+    def hair_color(self, new_hair_color: str) -> None:
         if not isinstance(new_hair_color, str):
-            raise TypeError
+            raise TypeError(f"Expected string for hair color, got {type(new_hair_color).__name__}.")
         self._hair_color = new_hair_color
 
 
@@ -130,7 +130,7 @@ class Address:
     _country: str = field(default='United States')
 
     def __str__(self) -> str:
-        return f"{self._address_line_1}, {self._address_line_2}, {self._city}, {self._country}, {self._postal_code}"
+        return f"Address(city:{self._city}, postal code:{self._country}, country: {self._postal_code})"
 
     def __post_init__(self) -> None:
         self.address_line_1 = self._address_line_1
@@ -168,7 +168,7 @@ class Address:
     @address_line_2.setter
     def address_line_2(self, new_address_line_2: str) -> None:
         if not isinstance(new_address_line_2, str):
-            raise TypeError(f"Expected string for address line 2, got {type(new_address_line_2).__name__}")
+            raise TypeError(f"Expected string for address line 2, got {type(new_address_line_2).__name__}.")
         self._address_line_2 = new_address_line_2
 
     @city.setter
