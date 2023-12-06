@@ -11,28 +11,31 @@ class Person:
         self._age = _age
 
     def __str__(self) -> str:
-        return f"Person(name:{self._name}, age:{self._age})"
+        return f"Person(name:{self.name}, age:{self.age})"
+
+    def __repr__(self) -> str:
+        return f"Person(name:{self.name}, age:{self.age}"
 
     @property
-    def age(self):
+    def age(self) -> int:
         return self._age
 
     @age.setter
-    def age(self, new_age: int):
+    def age(self, new_age: int) -> None:
         """Sets the person's age with value validation."""
         if not isinstance(new_age, int):
-            raise TypeError("Age must be an integer")
+            raise TypeError(f"Expected integer for age, got {type(new_age).__name__}")
         if not (5 <= new_age <= 99):
             raise ValueError("Age cannot be less than 5 or more than 99")
         self._age = new_age
 
     @property
-    def name(self):
+    def name(self) -> str:
         return self._name
 
     @name.setter
-    def name(self, new_name: str):
+    def name(self, new_name: str) -> None:
         """Sets the person's name with value validation."""
         if not isinstance(new_name, str):
-            raise TypeError("Name must be a string")
+            raise TypeError(f"Expected string for name, got {type(new_name).__name__}")
         self._name = new_name

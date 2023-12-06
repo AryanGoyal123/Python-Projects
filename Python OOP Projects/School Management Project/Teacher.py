@@ -29,13 +29,16 @@ class Teacher(Person):
     def __str__(self) -> str:
         return f"Teacher(name:{self._name}, age:{self._age}, teacherID:{self._teacherID})"
 
+    def __repr__(self) -> str:
+        return f"Teacher(name:{self._name}, age:{self._age}, teacherID:{self._teacherID})"
+
     @staticmethod
     def generate_teacher_id() -> int:
         characters = '0123456789'
         length = 9
 
         # Randomly choose characters from the characters list and join them into a string
-        random_id = ''.join(random.choice(characters) for i in range(length))
+        random_id = ''.join(random.choice(characters) for _ in range(length))
         return int(random_id)
 
     def enroll_course(self, course):
@@ -45,5 +48,5 @@ class Teacher(Person):
         pass
 
     @property
-    def teacherID(self):
+    def teacherID(self) -> int:
         return self._teacherID

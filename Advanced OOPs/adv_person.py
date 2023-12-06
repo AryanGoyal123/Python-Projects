@@ -9,12 +9,9 @@ def benchmark(func):
         result = func(args, kwargs)
         end_time = perf_counter()
         delta_t = end_time - start_time
-
         print(f"Time of Execution: {delta_t}")
-
         return result
-
-    return wrapper()
+    return wrapper
 
 
 @dataclass

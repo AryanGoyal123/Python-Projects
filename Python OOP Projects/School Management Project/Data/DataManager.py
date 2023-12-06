@@ -1,7 +1,7 @@
 import csv
 import os
 from time import perf_counter
-from typing import Any
+from typing import Any, Optional
 
 
 def benchmark(func):
@@ -10,7 +10,6 @@ def benchmark(func):
         result = func(*args, **kwargs)
         end_time = perf_counter()
         delta_t = end_time - start_time
-
         print(f"Time of Execution: {delta_t}")
         return result
     return wrapper
@@ -106,10 +105,11 @@ class DataManager:
         else:
             raise FileNotFoundError("Course File Not Found")
 
-    # method to search for a specific student, teacher, or course based on the name
     @classmethod
     @benchmark
-    def name_search(cls, name: str, search_field: str):
+    def name_search(cls, name: str, search_field: str) -> Optional[str, str, str]:
+        # method to search for a specific student, teacher, or course based on the name
+
         if search_field == 'teacher':
             file = cls.teacher_csv_file_path
         elif search_field == 'student':
@@ -118,21 +118,21 @@ class DataManager:
             raise ValueError("Wrong search field!")
 
         """
-        Open the given file in read mode and search through the 'Name' Column
-        based on the 'name' argument
+        Open the given file in read mode and search through the 'Name' column based on the 'name' argument
         """
         with open(file, mode='r', newline='') as file:
             reader = csv.reader(file)
-            headers = next(reader)
+            next(reader)
 
             for row in reader:
                 if name == row[0]:
                     return row[0], row[1], row[2]
-                return 0
+            return None
 
-    # method to search for a specific student or teacher based on the code
     @classmethod
-    def id_search(cls, id: int, search_field: str):
+    def id_search(cls, id: int, search_field: str) -> Optional[str, str, str]:
+        # method to search for a specific student or teacher based on the code
+
         if search_field == 'teacher':
             file = cls.teacher_csv_file_path
         elif search_field == 'student':
@@ -141,27 +141,26 @@ class DataManager:
             raise ValueError("Wrong search field!")
 
         """
-        Open the given file in read mode and search through the 'ID' Column
-        based on the 'id' argument
+        Open the given file in read mode and search through the 'ID' column based on the 'id' argument
         """
         with open(file, mode='r', newline='') as file:
             reader = csv.reader(file)
-            headers = next(reader)
+            next(reader)
 
             for row in reader:
                 if id == row[2]:
                     return row[0], row[1], row[2]
-                return 0
+            return None
 
     @classmethod
-    def course_search(cls, code: int):
+    def course_search(cls, code: int) -> Optional[str, str, str]:
         file = cls.courses_csv_file_path
 
         with open(file, mode='r', newline='') as file:
             reader = csv.reader(file)
-            headers = next(reader)
+            next(reader)
 
             for row in reader:
                 if code == row[1]:
                     return row[0], row[1], row[2]
-                return 0
+            return None

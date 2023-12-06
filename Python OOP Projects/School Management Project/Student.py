@@ -30,14 +30,16 @@ class Student(Person):
     def __str__(self) -> str:
         return f"Student(name:{self._name}, age:{self._age}, studentID:{self._studentID})"
 
+    def __repr__(self) -> str:
+        return f"Student(name:{self._name}, age:{self._age}, studentID:{self._studentID})"
+
     @staticmethod
     def generate_student_id() -> int:
         characters = '0123456789'
         length = 9
 
         # Randomly choose characters from the characters list and join them into a string
-        random_id = ''.join(random.choice(characters) for i in range(length))
-
+        random_id = ''.join(random.choice(characters) for _ in range(length))
         return int(random_id)
 
     def enroll_course(self, course):
