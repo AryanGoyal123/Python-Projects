@@ -12,10 +12,8 @@ class MyClass:
         self._input2 = _input2  # protected
         self.__input3 = __input3  # private
 
-    """
-    Notes: Use protected methods because use can use them in the main and child classes. 
-        They also allow getter and setter methods and can be checked for type and other formatting when changed 
-    """
+    """ Notes: Use protected methods because use can use them in the main and child classes. 
+        They also allow getter and setter methods and can be checked for type and other formatting when changed """
 
     @property
     def input2(self):
@@ -65,22 +63,30 @@ class Rectangle:
     def __str__(self) -> str:
         return f"Rectangle(width={self._width}, height={self._height}"
 
+    def __repr__(self) -> str:
+        return f"Rectangle(width={self._width}, height={self._height}"
+
+    def __eq__(self, other) -> bool:
+        return self.width == other.width and self.height == other.height
+
+    @property
     def area(self) -> float:
         return self._height * self._width
 
+    @property
     def perimeter(self) -> float:
         return 2 * (self._width + self._height)
 
     @property
-    def width(self):
+    def width(self) -> int:
         return self._width
 
     @property
-    def height(self):
+    def height(self) -> int:
         return self._height
 
     @width.setter
-    def width(self, new_width: int):
+    def width(self, new_width: int) -> None:
         if not isinstance(new_width, int):
             raise TypeError("Input Integer Values")
         if new_width <= 0:
@@ -88,7 +94,7 @@ class Rectangle:
         self._width = new_width
 
     @height.setter
-    def height(self, new_height: int):
+    def height(self, new_height: int) -> None:
         if not isinstance(new_height, int):
             raise TypeError("Input Integer Values")
         if new_height <= 0:
@@ -100,11 +106,19 @@ class Square(Rectangle):
     def __init__(self, side) -> None:
         super().__init__(side, side)
 
+    def __str__(self) -> str:
+        return f"Square(side={self._width}"
+
+    def __repr__(self) -> str:
+        return f"Square(side={self._width}"
+
+    def __eq__(self, other) -> bool:
+        return self.width == other.width
+
+    @property
     def area(self) -> float:
         return self._width * self._width
 
+    @property
     def perimeter(self) -> float:
         return 4 * self._width
-
-    def __str__(self) -> str:
-        return f"Square(side={self._width}"
