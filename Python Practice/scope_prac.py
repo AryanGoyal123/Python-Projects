@@ -61,10 +61,10 @@ class Rectangle:
         self._height = _height
 
     def __str__(self) -> str:
-        return f"Rectangle(width={self._width}, height={self._height}"
+        return f"Rectangle(width={self._width}, height={self._height})"
 
     def __repr__(self) -> str:
-        return f"Rectangle(width={self._width}, height={self._height}"
+        return f"Rectangle(width={self._width}, height={self._height})"
 
     def __eq__(self, other) -> bool:
         return self.width == other.width and self.height == other.height
@@ -88,7 +88,7 @@ class Rectangle:
     @width.setter
     def width(self, new_width: int) -> None:
         if not isinstance(new_width, int):
-            raise TypeError("Input Integer Values")
+            raise TypeError(f"Expected integer for width, got {type(new_width).__name__}.")
         if new_width <= 0:
             raise ValueError("Only Positive Values Are Allowed")
         self._width = new_width
@@ -96,7 +96,7 @@ class Rectangle:
     @height.setter
     def height(self, new_height: int) -> None:
         if not isinstance(new_height, int):
-            raise TypeError("Input Integer Values")
+            raise TypeError(f"Expected integer for height, got {type(new_height).__name__}.")
         if new_height <= 0:
             raise ValueError("Only Positive Values Are Allowed")
         self._height = new_height
@@ -107,18 +107,26 @@ class Square(Rectangle):
         super().__init__(side, side)
 
     def __str__(self) -> str:
-        return f"Square(side={self._width}"
+        return f"Square(side={self.width})"
 
     def __repr__(self) -> str:
-        return f"Square(side={self._width}"
+        return f"Square(side={self.width})"
 
     def __eq__(self, other) -> bool:
         return self.width == other.width
 
     @property
     def area(self) -> float:
-        return self._width * self._width
+        return self.width * self._width
 
     @property
     def perimeter(self) -> float:
-        return 4 * self._width
+        return 4 * self.width
+
+
+rect = Rectangle(_width=5, _height=10)
+rect2 = Rectangle(_width=5, _height=10)
+
+square1 = Square(side=5)
+square2 = Square(side=5)
+print(square1 == square2)

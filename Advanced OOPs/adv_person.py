@@ -1,9 +1,9 @@
 from dataclasses import dataclass, field
 from time import perf_counter
-from typing import Any, Optional
+from typing import Any, Optional, Callable
 
 
-def benchmark(func):
+def benchmark(func: Callable[..., Any]) -> Callable[..., Any]:
     def wrapper(*args: Any, **kwargs: Any) -> Any:
         start_time = perf_counter()
         result = func(args, kwargs)
@@ -20,19 +20,19 @@ class Stats:
     _gender: str = field(repr=False)
     _height: float = field(repr=False)
     _weight: float = field(repr=False)
-    _blood_type: Optional[str] = field(default=None)
-    _eye_color: Optional[str] = field(default=None)
-    _hair_color: Optional[str] = field(default=None)
+    _blood_type: Optional[str] = field(default=None, repr=False)
+    _eye_color: Optional[str] = field(default=None, repr=False)
+    _hair_color: Optional[str] = field(default=None, repr=False)
 
     # use __post_init__ function for validation
-    # def __post_init__(self) -> None:
-    #     self.age = self._age
-    #     self.gender = self._gender
-    #     self.height = self._height
-    #     self.weight = self._weight
-    #     self.blood_type = self._blood_type
-    #     self.eye_color = self._eye_color
-    #     self.hair_color = self._hair_color
+    def __post_init__(self) -> None:
+        self.age = self._age
+        self.gender = self._gender
+        self.height = self._height
+        self.weight = self._weight
+        self.blood_type = self._blood_type
+        self.eye_color = self._eye_color
+        self.hair_color = self._hair_color
 
     # calculate the BMI of a person
     @property
