@@ -56,17 +56,19 @@ class Person:
 
 
 class Rectangle:
-    def __init__(self, _width: int, _height: int) -> None:
-        self._width = _width
-        self._height = _height
+    def __init__(self, width: int, height: int) -> None:
+        self._width = width
+        self._height = height
 
     def __str__(self) -> str:
-        return f"Rectangle(width={self._width}, height={self._height})"
+        return f"Rectangle(width={self.width}, height={self.height})"
 
     def __repr__(self) -> str:
-        return f"Rectangle(width={self._width}, height={self._height})"
+        return f"Rectangle(width={self.width}, height={self.width})"
 
     def __eq__(self, other) -> bool:
+        if not isinstance(other, Rectangle):
+            raise NotImplemented
         return self.width == other.width and self.height == other.height
 
     @property
@@ -103,7 +105,7 @@ class Rectangle:
 
 
 class Square(Rectangle):
-    def __init__(self, side) -> None:
+    def __init__(self, side: int) -> None:
         super().__init__(side, side)
 
     def __str__(self) -> str:
@@ -113,6 +115,8 @@ class Square(Rectangle):
         return f"Square(side={self.width})"
 
     def __eq__(self, other) -> bool:
+        if not isinstance(other, Square):
+            raise NotImplemented
         return self.width == other.width
 
     @property
@@ -124,8 +128,9 @@ class Square(Rectangle):
         return 4 * self.width
 
 
-rect = Rectangle(_width=5, _height=10)
-rect2 = Rectangle(_width=5, _height=10)
+rect = Rectangle(width=5, height=10)
+rect2 = Rectangle(width=5, height=10)
+print(rect == rect2)
 
 square1 = Square(side=5)
 square2 = Square(side=5)

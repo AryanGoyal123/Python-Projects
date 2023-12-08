@@ -14,14 +14,19 @@ class Book:
     _price: float = field(default=0.0, compare=False)
     _quantity: int = field(default=0, compare=False, repr=False)
 
-    """
-        __post_init__ is executed after the __init__ method has completed, 
-        meaning all the data class fields have already been assigned.
-        Used for validation of different fields
-    """
+    """ __post_init__ is executed after the __init__ method has completed, meaning all the data class fields have 
+        already been assigned. Used for validation of different fields. """
 
     def __post_init__(self) -> None:
+        self._validate_fields()
 
+        # validate the isbn and pages instance variables
+        self.isbn = self._isbn
+        self.pages = self._pages
+        self.price = self._price
+        self.quantity = self._quantity
+
+    def _validate_fields(self) -> None:
         # validate the title, author, publication and genre (if not none) type
         if not isinstance(self.title, str):
             raise ValueError(f"Expected string for title, got {type(self.title).__name__}")
@@ -34,12 +39,6 @@ class Book:
 
         if self.genre is not None and not isinstance(self.genre, str):
             raise ValueError(f"Expected string for the genre, got {type(self.genre).__name__}")
-
-        # validate the isbn and pages instance variables
-        self.isbn = self._isbn
-        self.pages = self._pages
-        self.price = self._price
-        self.quantity = self._quantity
 
     def __str__(self) -> str:
         return f'Book(title={self.title}, author={self.author}, pages={self.pages}, price={self.price})'
@@ -94,6 +93,9 @@ class AudioBook(Book):
         super().__post_init__()
         self.length = self._length
 
+    def __str__(self) -> str:
+        return f'EBook(title={self.title}, author={self.author}, length={self.length} seconds, price=${self.price})'
+
     @property
     def length(self) -> float:
         return self._length
@@ -103,9 +105,6 @@ class AudioBook(Book):
         if not isinstance(new_length, float) or new_length < 0:
             raise ValueError(f"Expected float for length of AudioBook, got {type(new_length).__name__}")
         self._length = new_length
-
-    def __str__(self) -> str:
-        return f'EBook(title={self.title}, author={self.author}, length={self.length} seconds, price=${self.price})'
 
 
 @dataclass
@@ -117,6 +116,9 @@ class EBook(Book):
         super().__post_init__()
         self.size = self._size
 
+    def __str__(self) -> str:
+        return f'EBook(title={self.title}, author={self.author}, size={self.size} MB, price=${self.price})'
+
     @property
     def size(self) -> float:
         return self._size
@@ -126,9 +128,6 @@ class EBook(Book):
         if not isinstance(new_size, float) or new_size < 0:
             raise ValueError(f"Expected float for length of AudioBook, got {type(new_size).__name__}")
         self._size = new_size
-
-    def __str__(self) -> str:
-        return f'EBook(title={self.title}, author={self.author}, size={self.size} MB, price=${self.price})'
 
 
 def main():
