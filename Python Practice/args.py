@@ -38,3 +38,9 @@ def person_details(**kwargs: str) -> None:
 print_numbers(first=1, second=2)
 person_details(name='Aryan', age='19', job='student')
 
+names = ['Aryan', 'Josh', 'Trenton', 'Felix']
+
+for i, item in enumerate(names):
+    print(f'{i} {item}')
+
+

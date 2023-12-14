@@ -92,13 +92,13 @@ class Stats:
 
     @height.setter
     def height(self, new_height: float) -> None:
-        if not isinstance(new_height, float):
+        if not isinstance(new_height, (float, int)):
             raise TypeError(f"Expected float for height, got {type(new_height).__name__}.")
         self._height = new_height
 
     @weight.setter
     def weight(self, new_weight: float) -> None:
-        if not isinstance(new_weight, float):
+        if not isinstance(new_weight, (float, int)):
             raise TypeError(f"Expected float for weight, got {type(new_weight).__name__}.")
         self._weight = new_weight
 
@@ -130,7 +130,7 @@ class Address:
     _country: str = field(default='United States')
 
     def __str__(self) -> str:
-        return f"Address(city:{self._city}, postal code:{self._country}, country: {self._postal_code})"
+        return f"Address(city:{self.city}, postal code:{self.postal_code}, country: {self.country})"
 
     def __post_init__(self) -> None:
         self.address_line_1 = self._address_line_1

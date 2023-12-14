@@ -1,3 +1,18 @@
+from typing import Callable, Any
+from time import perf_counter
+
+
+def benchmark(func: Callable[..., Any]) -> Callable[..., Any]:
+    def wrapper(*args: Any, **kwargs: Any) -> Any:
+        start_time = perf_counter()
+        result = func(args, kwargs)
+        end_time = perf_counter()
+        delta_t = end_time - start_time
+        print(f"Time of Execution: {delta_t}")
+        return result
+    return wrapper
+
+
 class Person:
     def __init__(self, _name: str, _age: int):
         """
@@ -7,14 +22,14 @@ class Person:
         :raises TypeError: If the name is not a string or age is not an integer.
         :raises ValueError: If the age is negative.
         """
-        self._name = _name  # this will call the setter method
-        self._age = _age
+        self.name = _name  # this will call the setter method
+        self.age = _age
 
     def __str__(self) -> str:
-        return f"Person(name:{self.name}, age:{self.age})"
+        return f"Person(name:{self.name}, age:{self.age})."
 
     def __repr__(self) -> str:
-        return f"Person(name:{self.name}, age:{self.age}"
+        return f"Person(name:{self.name}, age:{self.age})."
 
     @property
     def age(self) -> int:
