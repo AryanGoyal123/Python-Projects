@@ -1,8 +1,50 @@
 from dataclasses import dataclass, field
+from abc import ABC, abstractmethod
+
+
+class Shape(ABC):
+
+    @abstractmethod
+    def area(self):
+        pass
+
+    @abstractmethod
+    def perimeter(self):
+        pass
 
 
 @dataclass
-class Rectangle:
+class Circle(Shape):
+    _diameter: float = field(default=0.0)
+
+    def __post_init__(self):
+        self.diameter = self._diameter
+        self.radius = self._diameter / 2
+
+    def __str__(self) -> str:
+        return f"Rectangle(diameter={self.diameter}, radius={self.radius})"
+
+    def area(self) -> float:
+        return (self.radius * self.radius) * 3.14159
+
+    def perimeter(self) -> float:
+        return 2 * 3.14159 * self.radius
+
+    @property
+    def diameter(self) -> float:
+        return self._diameter
+
+    @diameter.setter
+    def diameter(self, new_diameter: float) -> None:
+        if not isinstance(new_diameter, (int, float)):
+            raise TypeError(f"Expected float for width, got {type(new_diameter).__name__}.")
+        elif new_diameter <= 0:
+            raise ValueError("Only Positive Values Are Allowed")
+        self._diameter = new_diameter
+
+
+@dataclass
+class Rectangle(Shape):
     _width: float = field(default=0.0)
     _height: float = field(default=0.0)
 
@@ -10,19 +52,24 @@ class Rectangle:
         self.width = self._width
         self.height = self._height
 
-    def __str__(self) -> str: return f"Rectangle(width={self.width}, height={self.height})"
+    def __str__(self) -> str:
+        return f"Rectangle(width={self.width}, height={self.height})"
 
     @property
-    def area(self) -> float: return self._height * self._width
+    def area(self) -> float:
+        return self._height * self._width
 
     @property
-    def perimeter(self) -> float: return 2 * (self._width + self._height)
+    def perimeter(self) -> float:
+        return 2 * (self._width + self._height)
 
     @property
-    def width(self) -> float: return self._width
+    def width(self) -> float:
+        return self._width
 
     @property
-    def height(self) -> float: return self._height
+    def height(self) -> float:
+        return self._height
 
     @width.setter
     def width(self, new_width: float) -> None:
