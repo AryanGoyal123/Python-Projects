@@ -1,6 +1,6 @@
 from dataclasses import dataclass, field
 from time import perf_counter
-from typing import Any, Optional, Callable
+from typing import Any, Optional, Callable, Union, Tuple
 
 
 def benchmark(func: Callable[..., Any]) -> Callable[..., Any]:
@@ -34,10 +34,8 @@ class Stats:
         self.eye_color = self._eye_color
         self.hair_color = self._hair_color
 
-    # calculate the BMI of a person
     @property
-    def bmi(self) -> float:
-        return self._weight / (self._height ** 2)
+    def bmi(self) -> float: return self._weight / (self._height ** 2)
 
     @property
     def bmi_category(self) -> str:
@@ -51,32 +49,25 @@ class Stats:
         return "Obese"
 
     @property
-    def age(self) -> int:
-        return self._age
+    def age(self) -> int: return self._age
 
     @property
-    def gender(self) -> str:
-        return self._gender
+    def gender(self) -> str: return self._gender
 
     @property
-    def height(self) -> float:
-        return self._height
+    def height(self) -> Union[int, float]: return self._height
 
     @property
-    def weight(self) -> float:
-        return self._weight
+    def weight(self) -> Union[int, float]: return self._weight
 
     @property
-    def blood_type(self) -> str:
-        return self._blood_type
+    def blood_type(self) -> str: return self._blood_type
 
     @property
-    def eye_color(self) -> str:
-        return self._eye_color
+    def eye_color(self) -> str: return self._eye_color
 
     @property
-    def hair_color(self) -> str:
-        return self._hair_color
+    def hair_color(self) -> str: return self._hair_color
 
     @age.setter
     def age(self, new_age: int) -> None:
@@ -91,13 +82,13 @@ class Stats:
         self._gender = new_gender
 
     @height.setter
-    def height(self, new_height: float) -> None:
+    def height(self, new_height: Union[float, int]) -> None:
         if not isinstance(new_height, (float, int)):
             raise TypeError(f"Expected float for height, got {type(new_height).__name__}.")
         self._height = new_height
 
     @weight.setter
-    def weight(self, new_weight: float) -> None:
+    def weight(self, new_weight: Union[float, int]) -> None:
         if not isinstance(new_weight, (float, int)):
             raise TypeError(f"Expected float for weight, got {type(new_weight).__name__}.")
         self._weight = new_weight
@@ -140,24 +131,19 @@ class Address:
         self.country = self._country
 
     @property
-    def address_line_1(self) -> str:
-        return self._address_line_1
+    def address_line_1(self) -> str: return self._address_line_1
 
     @property
-    def address_line_2(self) -> str:
-        return self._address_line_2
+    def address_line_2(self) -> str: return self._address_line_2
 
     @property
-    def city(self) -> str:
-        return self._city
+    def city(self) -> str: return self._city
 
     @property
-    def country(self) -> str:
-        return self._country
+    def country(self) -> str: return self._country
 
     @property
-    def postal_code(self) -> str:
-        return self._postal_code
+    def postal_code(self) -> str: return self._postal_code
 
     @address_line_1.setter
     def address_line_1(self, new_address_line_1: str) -> None:
@@ -203,7 +189,7 @@ class Person:
         self.email = self._email
         self.phone_number = self._phone_number
 
-    def split_name(self) -> tuple[str, str]:
+    def split_name(self) -> Tuple[str, str]:
         first_name, second_name = self._name.split(' ')
         return first_name, second_name
 
@@ -211,16 +197,13 @@ class Person:
         return f"Person(name: {self._name}, email: {self._email}, phone number: {self._phone_number})"
 
     @property
-    def name(self) -> str:
-        return self._name
+    def name(self) -> str: return self._name
 
     @property
-    def email(self) -> str:
-        return self._email
+    def email(self) -> str: return self._email
 
     @property
-    def phone_number(self) -> str:
-        return self._phone_number
+    def phone_number(self) -> str: return self._phone_number
 
     @name.setter
     def name(self, new_name: str) -> None:

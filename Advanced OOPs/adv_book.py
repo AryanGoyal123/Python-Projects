@@ -1,6 +1,6 @@
 from dataclasses import dataclass, field
 import re
-from typing import Optional
+from typing import Optional, Union
 
 
 @dataclass
@@ -44,12 +44,10 @@ class Book:
         return f'Book(title={self.title}, author={self.author}, pages={self.pages}, price={self.price})'
 
     @property
-    def isbn(self) -> str:
-        return self._isbn
+    def isbn(self) -> str: return self._isbn
 
     @property
-    def pages(self) -> int:
-        return self._pages
+    def pages(self) -> int: return self._pages
 
     @isbn.setter
     def isbn(self, value: str) -> None:
@@ -64,12 +62,10 @@ class Book:
         self._pages = value
 
     @property
-    def price(self) -> float:
-        return self._price
+    def price(self) -> float: return self._price
 
     @property
-    def quantity(self) -> int:
-        return self._quantity
+    def quantity(self) -> int: return self._quantity
 
     @price.setter
     def price(self, new_price: float) -> None:
@@ -97,8 +93,7 @@ class AudioBook(Book):
         return f'EBook(title={self.title}, author={self.author}, length={self.length} seconds, price=${self.price})'
 
     @property
-    def length(self) -> float:
-        return self._length
+    def length(self) -> float: return self._length
 
     @length.setter
     def length(self, new_length: float) -> None:
@@ -120,8 +115,7 @@ class EBook(Book):
         return f'EBook(title={self.title}, author={self.author}, size={self.size} MB, price=${self.price})'
 
     @property
-    def size(self) -> float:
-        return self._size
+    def size(self) -> float: return self._size
 
     @size.setter
     def size(self, new_size: float) -> None:
