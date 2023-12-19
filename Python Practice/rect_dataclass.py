@@ -10,24 +10,19 @@ class Rectangle:
         self.width = self._width
         self.height = self._height
 
-    def __str__(self) -> str:
-        return f"Rectangle(width={self.width}, height={self.height})"
+    def __str__(self) -> str: return f"Rectangle(width={self.width}, height={self.height})"
 
     @property
-    def area(self) -> float:
-        return self._height * self._width
+    def area(self) -> float: return self._height * self._width
 
     @property
-    def perimeter(self) -> float:
-        return 2 * (self._width + self._height)
+    def perimeter(self) -> float: return 2 * (self._width + self._height)
 
     @property
-    def width(self) -> float:
-        return self._width
+    def width(self) -> float: return self._width
 
     @property
-    def height(self) -> float:
-        return self._height
+    def height(self) -> float: return self._height
 
     @width.setter
     def width(self, new_width: float) -> None:
@@ -54,22 +49,12 @@ class Square(Rectangle):
         self.width = self.height = self._side
         super().__post_init__()
 
-    def __str__(self) -> str:
-        return f"Square(side={self.width})"
+    def __str__(self) -> str: return f"Square(side={self.width})"
 
     @property
-    def side(self) -> float:
-        return self._side
+    def side(self) -> float: return self._side
 
 
 rect = Rectangle(_width=10, _height=10)
 rect2 = Rectangle(_width=6, _height=10)
-print(rect)
-print(rect.area)
-print(rect.perimeter)
-print(rect2.area)
-
 square1 = Square(_side=5)
-print(square1.area)
-print(square1.perimeter)
-
