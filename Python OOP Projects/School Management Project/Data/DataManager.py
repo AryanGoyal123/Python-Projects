@@ -1,7 +1,7 @@
 import csv
 import os
 from time import perf_counter
-from typing import Any, Optional, Callable
+from typing import Any, Optional, Callable, Union
 
 
 def benchmark(func: Callable[..., Any]) -> Callable[..., Any]:
@@ -80,46 +80,26 @@ class DataManager:
         cls.add_to_csv(data, cls.courses_csv_file_path)
 
     @classmethod
-    def search_entity_by_name(cls, name: str, entity_type: str) -> Optional[str, str, str]:
-        """ Searches for a specific student or teacher based on the provided name and entity type. """
-
-        file_path = cls.teacher_csv_file_path if entity_type == 'teacher' else cls.student_csv_file_path
-
-        # Open the given file in read mode and search through the 'Name' column based on the 'name' argument
+    def _search_entity(cls, file_path: str, key: Union[int, str], col_index: int) -> Optional[str, str, str]:
         with open(file_path, mode='r', newline='') as file:
-            reader = csv.reader(file_path)
+            reader = csv.reader(file)
             next(reader)  # Skip header
 
             for row in reader:
-                if name == row[0]:
-                    return row[0], row[1], row[2]
+                if key == int(row[col_index]) or key == row[col_index]:
+                    return row[0], row[1], row[col_index]
         return None
+
+    @classmethod
+    def search_entity_by_name(cls, name: str, entity_type: str) -> Optional[str, str, str]:
+        file_path = cls.teacher_csv_file_path if entity_type == 'teacher' else cls.student_csv_file_path
+        return cls._search_entity(file_path, name, 0)
 
     @classmethod
     def search_entity_by_id(cls, entity_id: int, entity_type: str) -> Optional[str, str, str]:
-        """ Searches for a specific student or teacher based on the provided ID and entity type. """
-
         file_path = cls.teacher_csv_file_path if entity_type == 'teacher' else cls.student_csv_file_path
-
-        with open(file_path, mode='r', newline='') as file:
-            reader = csv.reader(file)
-            next(reader)  # Skip header
-
-            for row in reader:
-                if entity_id == int(row[2]):
-                    return row[0], row[1], row[2]
-        return None
+        return cls._search_entity(file_path, entity_id, 2)
 
     @classmethod
     def search_course_by_code(cls, code: int) -> Optional[str, str, str]:
-        """Searches for a course by its code and returns course details."""
-        courses_file_path = cls.courses_csv_file_path
-
-        with open(courses_file_path, mode='r', newline='') as file:
-            reader = csv.reader(file)
-            next(reader)  # Skip header
-
-            for row in reader:
-                if code == int(row[1]):
-                    return row[0], row[1], row[2]
-        return None
+        return cls._search_entity(cls.courses_csv_file_path, code, 1)

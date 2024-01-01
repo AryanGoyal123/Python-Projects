@@ -2,7 +2,7 @@ from Course import Course
 from Student import Student
 from Teacher import Teacher
 from Data.DataManager import DataManager
-from typing import Any
+from typing import Any, Optional
 
 
 class School:
@@ -23,7 +23,7 @@ class School:
         student_age = int(input("Please input new student's age: ").strip())
         student_id = Student.generate_student_id()
 
-        # create an instance from Student class
+        # create an instance of Student class
         student = Student(student_name, student_age, student_id)
         DataManager.add_student_csv(student)
 
@@ -33,9 +33,9 @@ class School:
         teacher_age = int(input("Please input new teacher's age: ").strip())
         teacher_id = Teacher.generate_teacher_id()
 
-        # create an instance from Teacher class
+        # create an instance of Teacher class
         teacher = Teacher(teacher_name, teacher_age, teacher_id)
-        DataManager.add_student_csv(teacher)
+        DataManager.add_teacher_csv(teacher)
 
     @staticmethod
     def register_course() -> None:
@@ -51,11 +51,11 @@ class School:
     def ask_person_info() -> (str, str):
         search_field = input("Are you searching for a student or teacher?: ").strip()
         if not search_field.isalpha():
-            raise ValueError("Can only search for a student or teacher")
+            raise ValueError("Search field can only be 'student' or 'teacher'")
 
         person_name = input("What is the name of this person: ").strip()
-        if not name.isalpha():
-            raise ValueError
+        if not person_name.isalpha():
+            raise ValueError("Person name can only contain alphabetic characters")
         return search_field, person_name
 
     @staticmethod
@@ -70,7 +70,7 @@ class School:
         return name_search_result
 
     @staticmethod
-    def ask_person_info_code() -> (str, int):
+    def ask_person_info_code() -> (str, str):
         search_field = input("Are you searching for a student or teacher?: ").strip()
         if not search_field.isalpha():
             raise ValueError("Can only search for a student or teacher")
@@ -78,16 +78,16 @@ class School:
         person_id = input("What is the person's ID number: ").strip()
         if not name.isdigit():
             raise ValueError
-        return search_field, int(person_id)
+        return search_field, person_id
 
     @staticmethod
-    def get_person_info_code() -> Any:
+    def get_person_info_code() -> Optional:
         search_field, person_id = School.ask_person_info_code()
         code_search_result = DataManager.id_search(person_id, search_field)
 
         if code_search_result == 0:
             print("Name not found")
-            return 0
+            return None
         return code_search_result
 
 

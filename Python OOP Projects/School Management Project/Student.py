@@ -3,7 +3,7 @@ from Person import Person
 
 
 class Student(Person):
-    def __init__(self, _name: str, _age: int, _student_id: int, courses_enrolled=None):
+    def __init__(self, _name: str, _age: int, _student_id: str, courses_enrolled=None):
         """
         Initializes a new instance of the Student class.
         :param _name: str - The name of the student.
@@ -27,26 +27,20 @@ class Student(Person):
             """
             pass
 
-    def __str__(self) -> str:
-        return f"Student(name:{self._name}, age:{self._age}, studentID:{self._studentID})"
-
     def __repr__(self) -> str:
         return f"Student(name:{self._name}, age:{self._age}, studentID:{self._studentID})"
 
     @staticmethod
-    def generate_student_id() -> int:
-        characters = '0123456789'
+    def generate_student_id() -> str:
         length = 9
-
-        # Randomly choose characters from the characters list and join them into a string
-        random_id = ''.join(random.choice(characters) for _ in range(length))
-        return int(random_id)
+        random_id = ''.join(random.choice('0123456789') for _ in range(length))
+        return random_id
 
     def enroll_course(self, course):
-        pass
+        ...
 
     def view_transcript(self):
-        pass
+        ...
 
     @property
     def studentID(self):

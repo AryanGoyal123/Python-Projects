@@ -13,21 +13,18 @@ class Course:
         self.course_code = _course_code
         self.course_credits = _course_credit
         self.course_name = _course_name
-
-    def __str__(self) -> str:
-        return f'Course(name:{self._course_name}, code:{self._course_code}, credits:{self._credits})'
     
     def __repr__(self) -> str:
         return f'Course(name:{self._course_name}, code:{self._course_code}, credits:{self._credits})'
 
     def add_student(self, student):
-        pass
+        ...
 
     def remove_student(self, student):
-        pass
+        ...
 
     def get_course_details(self):
-        pass
+        ...
 
     @property
     def course_code(self) -> int:

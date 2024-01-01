@@ -3,15 +3,16 @@ import random
 
 
 class Teacher(Person):
-    def __init__(self, _name: str, _age: int, _teacher_id: int, courses_taught=None):
+    def __init__(self, _name: str, _age: int, _teacher_id: str, courses_taught: list = None):
         """
-        Initializes a new instance of the Student class.
-        :param _name: str - The name of the student.
-        :param _age: int - The age of the student.
-        :param _teacher_id: int - The student id of the student
+        Initializes a new instance of the Teacher class.
+        :param _name: str - The name of the teacher.
+        :param _age: int - The age of the teacher.
+        :param _teacher_id: str - The teacher id of the teacher.
+        :param courses_taught: list - List of courses taught by the teacher.
         :raises TypeError: If the name is not a string or age is not an integer.
         :raises ValueError: If the age is negative.
-        :raises TypeError: If the teacher id is not an integer or negative.
+        :raises TypeError: If the teacher id is not a string or empty.
         """
 
         super().__init__(_name, _age)
@@ -26,26 +27,20 @@ class Teacher(Person):
             load data from CSV file
             """
 
-    def __str__(self) -> str:
-        return f"Teacher(name:{self._name}, age:{self._age}, teacherID:{self._teacherID})"
-
     def __repr__(self) -> str:
         return f"Teacher(name:{self._name}, age:{self._age}, teacherID:{self._teacherID})"
 
     @staticmethod
-    def generate_teacher_id() -> int:
-        characters = '0123456789'
+    def generate_teacher_id() -> str:
         length = 9
-
-        # Randomly choose characters from the characters list and join them into a string
-        random_id = ''.join(random.choice(characters) for _ in range(length))
-        return int(random_id)
+        random_id = ''.join(random.choice('0123456789') for _ in range(length))
+        return random_id
 
     def enroll_course(self, course):
-        pass
+        ...
 
     def view_courses_taught(self):
-        pass
+        ...
 
     @property
     def teacherID(self) -> int:
