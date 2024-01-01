@@ -20,7 +20,7 @@ def process_items(items: List[int]) -> Dict[str, Tuple[int, int]]:
     return result
 
 
-# The Optional type annotation is a way to express that a variable or function argument may be of a certain type or None
+# The Optional type annotation is a way to express that a variable argument may be of a certain type or None
 def greet(name: Optional[str]) -> str:
     if name is not None:
         return f"Hello, {name}!"
