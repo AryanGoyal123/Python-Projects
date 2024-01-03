@@ -17,21 +17,31 @@ class Shape(ABC):
 @dataclass
 class Circle(Shape):
     _diameter: float = field(default=0.0)
+    PI = 3.14159
 
     def __post_init__(self) -> None:
         self.diameter = self._diameter
         self.radius = self._diameter / 2
 
-    def __str__(self) -> str: return f"Rectangle(diameter={self.diameter}, radius={self.radius})"
+    def __repr__(self) -> str:
+        return f"Circle(diameter={self.diameter}, radius={self.radius})"
+
+    def __eq__(self, other) -> bool:
+        if not isinstance(other, Circle):
+            return False
+        return self.diameter == other.diameter
 
     @property
-    def area(self) -> float: return (self.radius * self.radius) * 3.14159
+    def area(self) -> float:
+        return (self.radius * self.radius) * Circle.PI
 
     @property
-    def perimeter(self) -> float: return 2 * 3.14159 * self.radius
+    def perimeter(self) -> float:
+        return 2 * self.radius * Circle.PI
 
     @property
-    def diameter(self) -> float: return self._diameter
+    def diameter(self) -> float:
+        return self._diameter
 
     @diameter.setter
     def diameter(self, new_diameter: Union[int, float]) -> None:
@@ -51,19 +61,30 @@ class Rectangle(Shape):
         self.width = self._width
         self.height = self._height
 
-    def __str__(self) -> str: return f"Rectangle(width={self.width}, height={self.height})"
+    def __repr__(self) -> str:
+        return f"Rectangle(width={self.width}, height={self.height})"
+
+    def __eq__(self, other) -> bool:
+        if not isinstance(other, Rectangle):
+            return False
+        return ((self.width, self.height) == (other.width, other.height) or
+                (self.width, self.height) == (other.height, other.width))
 
     @property
-    def area(self) -> float: return self._height * self._width
+    def area(self) -> float:
+        return self._height * self._width
 
     @property
-    def perimeter(self) -> float: return 2 * (self._width + self._height)
+    def perimeter(self) -> float:
+        return 2 * (self._width + self._height)
 
     @property
-    def width(self) -> float: return self._width
+    def width(self) -> float:
+        return self._width
 
     @property
-    def height(self) -> float: return self._height
+    def height(self) -> float:
+        return self._height
 
     @width.setter
     def width(self, new_width: Union[int, float]) -> None:
@@ -90,12 +111,9 @@ class Square(Rectangle):
         self.width = self.height = self._side
         super().__post_init__()
 
-    def __str__(self) -> str: return f"Square(side={self.width})"
+    def __repr__(self) -> str:
+        return f"Square(side={self.width})"
 
     @property
-    def side(self) -> float: return self._side
-
-
-rect = Rectangle(_width=10, _height=10)
-rect2 = Rectangle(_width=6, _height=10)
-square1 = Square(_side=5)
+    def side(self) -> float:
+        return self._side
