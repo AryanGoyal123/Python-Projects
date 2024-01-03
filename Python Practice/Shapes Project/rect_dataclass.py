@@ -47,7 +47,7 @@ class Circle(Shape):
     def diameter(self, new_diameter: Union[int, float]) -> None:
         if not isinstance(new_diameter, (int, float)):
             raise TypeError(f"Expected float for width, got {type(new_diameter).__name__}.")
-        elif new_diameter <= 0:
+        elif new_diameter < 0:
             raise ValueError("Only Positive Values Are Allowed")
         self._diameter = new_diameter
 
@@ -90,7 +90,7 @@ class Rectangle(Shape):
     def width(self, new_width: Union[int, float]) -> None:
         if not isinstance(new_width, (int, float)):
             raise TypeError(f"Expected float for width, got {type(new_width).__name__}.")
-        if new_width <= 0.0:
+        if new_width < 0.0:
             raise ValueError("Only Positive Values Are Allowed")
         self._width = new_width
 
@@ -98,7 +98,7 @@ class Rectangle(Shape):
     def height(self, new_height: Union[int, float]) -> None:
         if not isinstance(new_height, (int, float)):
             raise TypeError(f"Expected float for height, got {type(new_height).__name__}.")
-        if new_height <= 0.0:
+        if new_height < 0.0:
             raise ValueError("Only Positive Values Are Allowed")
         self._height = new_height
 
@@ -109,7 +109,6 @@ class Square(Rectangle):
 
     def __post_init__(self) -> None:
         self.width = self.height = self._side
-        super().__post_init__()
 
     def __repr__(self) -> str:
         return f"Square(side={self.width})"
