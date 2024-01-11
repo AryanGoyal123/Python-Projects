@@ -10,11 +10,11 @@ Further ToDos:
 
 
 class LogisticRegression:
-    def __init__(self, learning_rate=0.05, iterations=5):
+    def __init__(self, learning_rate: float = 0.05, iterations: int = 5):
         self.learning_rate = learning_rate
         self.iterations = iterations
-        self.weights = None
-        self.bias = None
+        self.weights = lambda: None
+        self.bias = lambda: None
         self.cost = []
 
     def fit(self, X, y):
@@ -29,16 +29,16 @@ class LogisticRegression:
         y_pred = np.dot(X, self.weights) + self.bias
         return y_pred
 
-    def sigmoid(self, X):
+    def sigmoid(self, X) -> float:
         return 1 / (1 + np.exp(np.e, -self.feed_forward(X)))
 
 
 class LinearRegression:
-    def __init__(self, learning_rate=0.05, iterations=5):
+    def __init__(self, learning_rate: float = 0.05, iterations: int = 5):
         self.learning_rate = learning_rate
         self.iterations = iterations
-        self.weights = None
-        self.bias = None
+        self.weights = lambda: None
+        self.bias = lambda: None
         self.cost = []
 
     def fit(self, X, y):
@@ -79,7 +79,7 @@ class OptimalValueDeterminer:
     The stored cost for different iterations
     """
 
-    def __init__(self, learning_rates=None, iterations_options=None):
+    def __init__(self, learning_rates: float = None, iterations_options: int = None):
 
         if learning_rates is None:
             learning_rates = [0.1, 0.05, 0.01]

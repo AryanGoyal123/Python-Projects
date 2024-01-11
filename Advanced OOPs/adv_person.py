@@ -8,7 +8,7 @@ def benchmark(func: Callable[..., Any]) -> Callable[..., Any]:
         start_time = perf_counter()
         result = func(args, kwargs)
         end_time = perf_counter()
-        delta_t = end_time - start_time
+        delta_t: float = end_time - start_time
         print(f"Time of Execution: {delta_t}")
         return result
     return wrapper

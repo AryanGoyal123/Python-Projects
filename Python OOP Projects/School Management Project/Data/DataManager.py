@@ -17,15 +17,22 @@ def benchmark(func: Callable[..., Any]) -> Callable[..., Any]:
 
 
 class DataManager:
-    """ This class will manage read and write to CSV Files.
-        We need a CSV file to store the name of student, teachers, and course list. """
+    """
+    This class will manage read and write to CSV Files.
+    We need a CSV file to store the name of student, teachers, and course list.
+    """
 
-    student_csv_file_path = 'Data/student.csv'
-    teacher_csv_file_path = 'Data/teacher.csv'
-    courses_csv_file_path = 'Data/courses.csv'
+    DATA_DIR = 'Data'
+    STUDENT_CSV_FILE = os.path.join(DATA_DIR, 'student.csv')
+    TEACHER_CSV_FILE = os.path.join(DATA_DIR, 'teacher.csv')
+    COURSES_CSV_FILE = os.path.join(DATA_DIR, 'courses.csv')
+
+    HEADER_STUDENT = ['Name', 'Age', 'StudentID']
+    HEADER_TEACHER = ['Name', 'Age', 'TeacherID']
+    HEADER_COURSES = ['Course Name', 'Course Code', 'Credits']
 
     @staticmethod
-    def csv_file_exists(file_path) -> bool:
+    def csv_file_exists(file_path: str) -> bool:
         return os.path.isfile(file_path)
 
     @classmethod
@@ -41,21 +48,18 @@ class DataManager:
 
     @classmethod
     def create_student_csv(cls) -> None:
-        header = ['Name', 'Age', 'StudentID']
-        cls.create_csv(cls.student_csv_file_path, header)
+        cls.create_csv(cls.STUDENT_CSV_FILE, cls.HEADER_STUDENT)
 
     @classmethod
     def create_teacher_csv(cls) -> None:
-        header = ['Name', 'Age', 'TeacherID']
-        cls.create_csv(cls.teacher_csv_file_path, header)
+        cls.create_csv(cls.TEACHER_CSV_FILE, cls.HEADER_TEACHER)
 
     @classmethod
     def create_course_csv(cls) -> None:
-        header = ['Course Name', 'Course Code', 'Credits']
-        cls.create_csv(cls.courses_csv_file_path, header)
+        cls.create_csv(cls.COURSES_CSV_FILE, cls.HEADER_COURSES)
 
     @classmethod
-    def add_to_csv(cls, data, file_path) -> None:
+    def add_to_csv(cls, data, file_path: str) -> None:
         """ Adds data to a CSV file based on the input data from student, teacher, or course."""
         if DataManager.csv_file_exists(file_path):
             with open(file_path, mode='a', newline='') as file:
@@ -67,17 +71,17 @@ class DataManager:
     @classmethod
     def add_student_csv(cls, student) -> None:
         data = [f'{student.name}', f'{student.age}', f'{student.studentID}']
-        cls.add_to_csv(data, cls.student_csv_file_path)
+        cls.add_to_csv(data, cls.STUDENT_CSV_FILE)
 
     @classmethod
     def add_teacher_csv(cls, teacher) -> None:
         data = [f'{teacher.name}', f'{teacher.age}', f'{teacher.teacherID}']
-        cls.add_to_csv(data, cls.teacher_csv_file_path)
+        cls.add_to_csv(data, cls.TEACHER_CSV_FILE)
 
     @classmethod
     def add_course_csv(cls, course) -> None:
         data = [f'{course.name}', f'{course.code}', f'{course.credits}']
-        cls.add_to_csv(data, cls.courses_csv_file_path)
+        cls.add_to_csv(data, cls.COURSES_CSV_FILE)
 
     @classmethod
     def _search_entity(cls, file_path: str, key: Union[int, str], col_index: int) -> Optional[str, str, str]:
@@ -91,15 +95,15 @@ class DataManager:
         return None
 
     @classmethod
-    def search_entity_by_name(cls, name: str, entity_type: str) -> Optional[str, str, str]:
-        file_path = cls.teacher_csv_file_path if entity_type == 'teacher' else cls.student_csv_file_path
+    def search_entity_by_name(cls, name: str, entity_type: str) -> Optional[list]:
+        file_path = cls.TEACHER_CSV_FILE if entity_type == 'teacher' else cls.STUDENT_CSV_FILE
         return cls._search_entity(file_path, name, 0)
 
     @classmethod
-    def search_entity_by_id(cls, entity_id: int, entity_type: str) -> Optional[str, str, str]:
-        file_path = cls.teacher_csv_file_path if entity_type == 'teacher' else cls.student_csv_file_path
+    def search_entity_by_id(cls, entity_id: int, entity_type: str) -> Optional[list]:
+        file_path = cls.TEACHER_CSV_FILE if entity_type == 'teacher' else cls.STUDENT_CSV_FILE
         return cls._search_entity(file_path, entity_id, 2)
 
     @classmethod
-    def search_course_by_code(cls, code: int) -> Optional[str, str, str]:
-        return cls._search_entity(cls.courses_csv_file_path, code, 1)
+    def search_course_by_code(cls, code: int) -> Optional[list]:
+        return cls._search_entity(cls.COURSES_CSV_FILE, code, 1)
