@@ -1,14 +1,14 @@
 from dataclasses import dataclass, field
 import re
-from typing import Optional, Union
+from typing import Optional
 
 
 @dataclass
 class Book:
     title: str
     author: str = field(default="Unknown Author")
-    publication_year: Optional[int] = None
-    genre: Optional[str] = None
+    publication_year: Optional[int] = lambda: None
+    genre: Optional[str] = lambda: None
     _isbn: str = field(default="Unknown", repr=False)
     _pages: int = field(default=0, compare=False)
     _price: float = field(default=0.0, compare=False)
